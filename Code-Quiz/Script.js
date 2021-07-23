@@ -19,6 +19,7 @@ var buttonB = document.getElementById("b");
 var buttonC = document.getElementById("c");
 var buttonD = document.getElementById("d");
 
+// Quiz question object
 var quizQuestions = [{
     question: "JavaScript is a ___ -side programming language.",
     choiceA: "Client",
@@ -57,12 +58,14 @@ var quizQuestions = [{
 
 
     ];
+
 var finalQuestionIndex = quizQuestions.length;
 var currentQuestionIndex = 0;
 var timeLeft = 76;
 var timerInterval;
 var score = 0;
 var correct;
+
 
 function generateQuizQuestion(){
     gameoverDiv.style.display = "none";
@@ -77,10 +80,12 @@ function generateQuizQuestion(){
     buttonD.innerHTML = currentQuestion.choiceD;
 };
 
+
 function startQuiz(){
     gameoverDiv.style.display = "none";
     startQuizDiv.style.display = "none";
     generateQuizQuestion();
+
 
     timerInterval = setInterval(function() {
         timeLeft--;
@@ -93,6 +98,7 @@ function startQuiz(){
       }, 1000);
     quizBody.style.display = "block";
 }
+
 function showScore(){
     quizBody.style.display = "none"
     gameoverDiv.style.display = "flex";
@@ -128,6 +134,7 @@ submitScoreBtn.addEventListener("click", function highscore(){
 
 });
 
+
 function generateHighscores(){
     highscoreDisplayName.innerHTML = "";
     highscoreDisplayScore.innerHTML = "";
@@ -142,11 +149,15 @@ function generateHighscores(){
     }
 }
 
+
+
+
 function clearScore(){
     window.localStorage.clear();
     highscoreDisplayName.textContent = "";
     highscoreDisplayScore.textContent = "";
 }
+
 
 function replayQuiz(){
     highscoreContainer.style.display = "none";
@@ -156,6 +167,7 @@ function replayQuiz(){
     score = 0;
     currentQuestionIndex = 0;
 }
+
 
 function checkAnswer(answer){
     correct = quizQuestions[currentQuestionIndex].correctAnswer;
