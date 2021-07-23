@@ -9,6 +9,7 @@
 7. [Questions](#questions)
 ## Project Description
 * A simple quiz using Javascript, HTML, and CSS. Quizing the user with a timed quiz on web developing. 
+<br><br>![Screen Shot 2021-07-22 at 8 51 18 PM](https://user-images.githubusercontent.com/77952267/126726146-80f7aaa8-d68b-4d7f-ae5f-75cd68ebf033.png)
 
 
 ## Installation Instructions
