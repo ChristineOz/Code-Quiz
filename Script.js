@@ -11,7 +11,7 @@ var highscoreContainer = document.getElementById("highscoreContainer");
 var highscoreDiv = document.getElementById("high-scorePage");
 var highscoreInputName = document.getElementById("initials");
 var highscoreDisplayName = document.getElementById("highscore-initials");
-var endGameBtns = document.getElementById("endGameBtns");
+var endGame = document.getElementById("endGame");
 var submitScoreBtn = document.getElementById("submitScore");
 var highscoreDisplayScore = document.getElementById("highscore-score");
 var buttonA = document.getElementById("a");
@@ -27,13 +27,6 @@ var quizQuestions = [{
     choiceC: "Both",
     choiceD: "None",
     correctAnswer: "c"},
-  {
-    question: "Which of the following will write the message “Hello DataFlair!” in an alert box?",
-    choiceA: "alertBox(“Hello DataFlair!”);",
-    choiceB: "alert(Hello DataFlair!);",
-    choiceC: "msgAlert(“Hello DataFlair!”);",
-    choiceD: "alert(“Hello DataFlair!”);",
-    correctAnswer: "d"},
    {
     question: "Which are the correct if statements to execute certain code if “x” is equal to 2?",
     choiceA: "if(x 2)",
@@ -47,18 +40,11 @@ var quizQuestions = [{
     choiceB: "&lt;link&gt;",
     choiceC: "&lt;head&gt;",
     choiceD: "&lt;script&gt;",
-    correctAnswer: "d"},
-    {
-    question: "Which of the following is correct about features of JavaScript?",
-    choiceA: "TrueJavaScript is a lightweight, interpreted programming language.",
-    choiceB: "Javascript is designed for creating network-centric applications.",
-    choiceC: "JavaScript is a complimentary to and integrated with Java.",
-    choiceD: "All of the above.",
-    correctAnswer: "d"},  
+    correctAnswer: "d"}, 
     {
     question: "What does WWW stand for?",
-    choiceA: "Web World Workings",
-    choiceB: "Weak Web Will",
+    choiceA: "Web World Witch",
+    choiceB: "Weak Web Willson",
     choiceC: "World Wide Web",
     choiceD: "Wendy Wants Waffles",
     correctAnswer: "c"},
@@ -72,7 +58,7 @@ var quizQuestions = [{
 
 
     ];
-// Other global variables
+
 var finalQuestionIndex = quizQuestions.length;
 var currentQuestionIndex = 0;
 var timeLeft = 76;
@@ -80,7 +66,7 @@ var timerInterval;
 var score = 0;
 var correct;
 
-// This function cycles through the object array containing the quiz questions to generate the questions and answers.
+
 function generateQuizQuestion(){
     gameoverDiv.style.display = "none";
     if (currentQuestionIndex === finalQuestionIndex){
@@ -94,13 +80,13 @@ function generateQuizQuestion(){
     buttonD.innerHTML = currentQuestion.choiceD;
 };
 
-// Start Quiz function starts the TimeRanges, hides the start button, and displays the first quiz question.
+
 function startQuiz(){
     gameoverDiv.style.display = "none";
     startQuizDiv.style.display = "none";
     generateQuizQuestion();
 
-    //Timer
+
     timerInterval = setInterval(function() {
         timeLeft--;
         quizTimer.textContent = "Time left: " + timeLeft;
@@ -112,7 +98,7 @@ function startQuiz(){
       }, 1000);
     quizBody.style.display = "block";
 }
-// This function is the end page screen that displays your score after either completeing the quiz or upon timer run out
+
 function showScore(){
     quizBody.style.display = "none"
     gameoverDiv.style.display = "flex";
@@ -121,8 +107,6 @@ function showScore(){
     finalScoreEl.innerHTML = "You got " + score + " out of " + quizQuestions.length + " correct!";
 }
 
-// On click of the submit button, we run the function highscore that saves and stringifies the array of high scores already saved in local stoage
-// as well as pushing the new user name and score into the array we are saving in local storage. Then it runs the function to show high scores.
 submitScoreBtn.addEventListener("click", function highscore(){
 
 
@@ -150,7 +134,7 @@ submitScoreBtn.addEventListener("click", function highscore(){
 
 });
 
-// This function clears the list for the high scores and generates a new high score list from local storage
+
 function generateHighscores(){
     highscoreDisplayName.innerHTML = "";
     highscoreDisplayScore.innerHTML = "";
@@ -165,25 +149,16 @@ function generateHighscores(){
     }
 }
 
-// This function displays the high scores page while hiding all of the other pages from 
-function showHighscore(){
-    startQuizDiv.style.display = "none"
-    gameoverDiv.style.display = "none";
-    highscoreContainer.style.display = "flex";
-    highscoreDiv.style.display = "block";
-    endGameBtns.style.display = "flex";
 
-    generateHighscores();
-}
 
-// This function clears the local storage of the high scores as well as clearing the text from the high score board
+
 function clearScore(){
     window.localStorage.clear();
     highscoreDisplayName.textContent = "";
     highscoreDisplayScore.textContent = "";
 }
 
-// This function sets all the variables back to their original values and shows the home page to enable replay of the quiz
+
 function replayQuiz(){
     highscoreContainer.style.display = "none";
     gameoverDiv.style.display = "none";
@@ -193,7 +168,7 @@ function replayQuiz(){
     currentQuestionIndex = 0;
 }
 
-// This function checks the response to each answer 
+
 function checkAnswer(answer){
     correct = quizQuestions[currentQuestionIndex].correctAnswer;
 
@@ -202,16 +177,14 @@ function checkAnswer(answer){
         alert("That Is Correct!");
         currentQuestionIndex++;
         generateQuizQuestion();
-        //display in the results div that the answer is correct.
+       
     }else if (answer !== correct && currentQuestionIndex !== finalQuestionIndex){
         alert("That Is Incorrect.")
         currentQuestionIndex++;
         generateQuizQuestion();
-        //display in the results div that the answer is wrong.
+    
     }else{
         showScore();
     }
 }
-
-// This button starts the quiz!
 startQuizButton.addEventListener("click",startQuiz); 
